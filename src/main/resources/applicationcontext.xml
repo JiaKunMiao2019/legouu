@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+<bean id="hatLog" class="com.legouu.service.ChatLog">
+    <!-- property是代表在该类注入一个been-->
+    <property name="userDao" ref="userDao"></property>
+</bean>
+    <bean id="userDao" class="com.legouu.service.DuoTai.UserDao"/>
+    <bean id="user1" class="com.legouu.service.User">
+        <constructor-arg index="0" value="kk"/>
+        <constructor-arg index="1" value="123456"/>
+        <constructor-arg index="2">
+            <list>
+                <value>"asjdfh"</value>
+                <value>"asjdfh"</value>
+                <value>"asjdfh"</value>
+            </list>
+        </constructor-arg>
+    </bean>
+    <bean id="user2" class="com.legouu.service.User">
+        <constructor-arg index="0" value="jj"/>
+        <constructor-arg index="1" value="18"/>
+        <constructor-arg index="2">
+            <list>
+                <value>"123"</value>
+            </list>
+        </constructor-arg>
+    </bean>
+    <!--定义切面been-->
+   <!-- <bean id="myAspect" class="com.legouu.service.MyAspect">
+        <aop:config>
+            &lt;!&ndash;1.配置切面&ndash;&gt;
+            <aop:aspect id="aspect" ref="myAspect">
+                &lt;!&ndash;2配置切入点&ndash;&gt;
+                <aop:pointcut id="myPointCut" expression="execution(* com.legouu.service.*.*(..))"/>
+                &lt;!&ndash;3.配置通知&ndash;&gt;
+                    &lt;!&ndash;前置通知&ndash;&gt;
+                    <aop:after method="myBefore" pointcut-ref="myPointCut"/>
+                    &lt;!&ndash;后置通知&ndash;&gt;
+                    <aop:after-returning method="myAfterReturning" pointcut-ref="myPointCut" returning="returnVal"/>
+                    &lt;!&ndash;环绕通知&ndash;&gt;
+                    <aop:around method="myAround" pointcut-ref="myPointCut"/>
+                    &lt;!&ndash;异常通知&ndash;&gt;
+                    <aop:after-throwing method="myAfterReturning" pointcut-ref="myPointCut" throwing="e"/>
+                    &lt;!&ndash;最终通知&ndash;&gt;
+                    <aop:after method="myAfter" pointcut-ref="myPoincut"/>
+            </aop:aspect>
+        </aop:config>
+    </bean>-->
+    <context:component-scan base-package="com.legouu.service"/>
+    <aop:aspectj-autoproxy/>
+</beans>
